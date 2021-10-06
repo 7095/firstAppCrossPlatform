@@ -1,12 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useStatem,useEffect} from 'react';
+import { StyleSheet, Text, View,FlatList,TouchableOpacity } from 'react-native';
+import Constant from 'expo-constants';
 
 export default function App() {
+
+const Item =(props) =>{
+  return(
+    <View>
+      <Text>{props.text}</Text>
+    </View>
+  )
+}
+
+
+  const AppData =[
+    { id: 1, name: "Apple"},
+    { id: 2, name: "Banana"},
+    { id: 3, name: "Orange"},
+    { id: 4, name: "Water Melon"},
+    { id: 5, name: "Grape"}
+  ]
+
+  const Renderer = ({item}) =>{
+    return(
+      <Item text={item.name}/>
+    )
+  }
+
   return (
     <View style={styles.container}>
       <Text>Hello World</Text>
-      <StatusBar style="auto" />
+      <FlatList data={AppData} keyExtractor={(item)=> item.id} renderItem={Renderer}/>
     </View>
   );
 }
@@ -15,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: Constant.statusBarHeight,
+
   },
 });
