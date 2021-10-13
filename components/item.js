@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Item =(props) =>{
     return(
-      <View style={style.container}>
+      <View style={style.myworld}>
         <Text>{props.text}</Text>
       </View>
     )
@@ -16,4 +16,10 @@ export const Item =(props) =>{
           borderBottomColor:'black',
           borderBottomWidth:1,
       },
+      myworld:{
+        padding:10,
+        backgroundColor: '#f8fcc5',
+        borderBottomColor:'black',
+        borderBottomWidth:1,
+    },
   })
