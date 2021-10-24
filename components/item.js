@@ -2,6 +2,8 @@ import React from 'react';
 import {View,Text, StyleSheet, Button} from 'react-native';
 export const Item =(props) =>{
 
+  //const [ name, setName ] = useState()
+
     return(
       <View style={style.myworld}>
         <Text style={style.text}>{props.text}</Text>

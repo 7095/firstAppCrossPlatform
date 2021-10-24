@@ -7,13 +7,22 @@ import { Item } from './components/item';
 
 export default function App() {
   
-  const [ data,setData ]= useState([])
-  const [validInput, setValidInput ]= useState(false)
-  const [ input, setInput]= useState()
+  const [ data,setData ] = useState([])
+  const [validInput, setValidInput ] = useState(false)
+  const [ input, setInput ] = useState()
+  const [ appInit, setAppInit ] = useState(true)
 
+  
   useEffect ( () => {
-    console.log("Triggered")
-  })
+    if( appInit){
+      getData()
+      setAppInit( false )
+      console.log("get data")
+    }else{
+      storeData()
+      console.log("store data")
+    }
+  },[data])
 
   const onTextChange = (value)=>{
     setInput(value)
@@ -29,6 +38,7 @@ export default function App() {
     const item = {id: id, name: input }
     setData ([...data, item ] )
     setInput(null)
+    setValidInput(false)
   }
 
   const onDelete = ( id ) => {
@@ -65,8 +75,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.headerText}>Tasks To Do Today</Text>
       <View style={styles.header}>
-        <TextInput 
+      <TextInput 
         style={styles.input} 
         onChangeText={onTextChange } 
         placeholder="Minimum 3 characters"
@@ -89,11 +100,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'skyblue',
     marginTop: Constant.statusBarHeight,
-
   },
   header:{
     display:'flex',
     flexDirection:'row',
+  },
+  headerText:{
+    display:'flex',
+    flexDirection:'row',
+    backgroundColor:'pink',
+    fontSize:30,
+    //fontStyle: 'bold',
   },
   input:{
     backgroundColor:'white',
