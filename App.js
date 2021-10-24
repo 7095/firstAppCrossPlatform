@@ -17,10 +17,9 @@ export default function App() {
     if( appInit){
       getData()
       setAppInit( false )
-      console.log("get data")
-    }else{
+    }
+    else{
       storeData()
-      console.log("store data")
     }
   },[data])
 
@@ -35,7 +34,7 @@ export default function App() {
 
   const onSubmit =(event ) =>{
     const id =new Date().getTime().toString()
-    const item = {id: id, name: input }
+    const item = {id: id, name: input, status: false }
     setData ([...data, item ] )
     setInput(null)
     setValidInput(false)
@@ -50,6 +49,16 @@ export default function App() {
     })
     setData( newData )
     storeData()
+  }
+
+  const changeStatus = (id) => {
+    let items=[...data]
+    items.forEach((item)=>{
+      if( item.id === id){
+        item.status=true
+      }
+  })
+  setData(items)
   }
   
   const storeData = async () => {
@@ -71,7 +80,15 @@ export default function App() {
     }
   }
   
-  const Renderer = ({item}) => (<Item text={item.name} delete ={onDelete} id={item.id} />)
+  const Renderer = ({ item }) => (
+  <Item 
+    text={item.name} 
+    delete ={onDelete} 
+    id={item.id} 
+    status={item.status}
+    done={changeStatus}
+    />
+    )
 //<Image style={styles.splash} source={require('../assets/splashScreen.png')} />
 
   return (
