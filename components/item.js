@@ -1,17 +1,22 @@
 import React from 'react';
-import {View,Text, StyleSheet, Button} from 'react-native';
+import {View,Text, StyleSheet, Button, Image, TouchableOpacity } from 'react-native';
 
 export const Item =(props) =>{
 
   const Buttons = (props) => {
   if(props.status=== true){
     return(
-      <Button title="Delete" onPress={ () => props.delete( props.id ) }/>
+      <TouchableOpacity onPress={ () => props.delete( props.id ) }>
+        <Image style={style.icon} source={require("../assets/trash-solid.png")}/>
+      </TouchableOpacity>
+
     )
   }
   else if(props.status=== false){
     return(
-      <Button title="Done" onPress={ () => props.done( props.id ) }/>
+      <TouchableOpacity onPress={ () => props.done( props.id ) }>
+        <Image style={style.icon} source={require("../assets/check-solid.png")}/>
+      </TouchableOpacity>
     )
   }
 }
@@ -44,5 +49,8 @@ export const Item =(props) =>{
       textDecorationLine:"line-through",
       color:"#ff5714",
     },
-   
+    icon:{
+      width:35,
+      height:35,
+    },
   })
