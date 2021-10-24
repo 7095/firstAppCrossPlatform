@@ -8,7 +8,7 @@ import { Item } from './components/item';
 export default function App() {
   
   const [ data,setData ] = useState([])
-  const [validInput, setValidInput ] = useState(false)
+  const [ validInput, setValidInput ] = useState(false)
   const [ input, setInput ] = useState()
   const [ appInit, setAppInit ] = useState(true)
 
@@ -106,7 +106,7 @@ export default function App() {
           style={(validInput)? styles.button : styles.buttonDisabled} 
           disabled={(validInput)? false:true}
           onPress={onSubmit}>
-          <Text style={styles.buttontext}> Add To List</Text>
+          <Text style={styles.buttontext}> Add </Text>
         </TouchableOpacity>
       </View>
       <FlatList data={data} keyExtractor={(item)=> item.id} renderItem={Renderer}/>

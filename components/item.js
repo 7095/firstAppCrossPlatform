@@ -8,8 +8,9 @@ export const Item =(props) =>{
     return(
       <TouchableOpacity onPress={ () => props.delete( props.id ) }>
         <Image style={style.icon} source={require("../assets/trash-solid.png")}/>
+        <Image style={style.icon} source={require("../assets/undo-solid.png")}/>
       </TouchableOpacity>
-
+      
     )
   }
   else if(props.status=== false){
@@ -22,23 +23,34 @@ export const Item =(props) =>{
 }
   
     return(
-      <View style={style.viewStyle}>
-        <Text style={ (props.status) ? style.textDone : style.text}>{props.text}</Text>
-        <Buttons status={props.status} done={props.done } delete={ props.delete } id={props.id }/>
+      <View style={style.back}>
+        <View style={style.center}>
+          <Text style={ (props.status) ? style.textDone : style.text}>{props.text}</Text>
+          <Buttons status={props.status} done={props.done } delete={ props.delete } id={props.id }/>
+        </View>
       </View>
     )
   }
 
   const style =StyleSheet.create({
       
-    viewStyle:{
-        padding:10,
+    center:{
+        padding:15,
         backgroundColor: '#f8fcc5',
         borderBottomColor:'black',
         borderBottomWidth:1,
+        borderRadius:5,
         display: 'flex',
         flexDirection: 'row',
-        alignItems:'center',
+        alignItems:'center',        
+    },
+    back:{
+      backgroundColor:'blue',
+      padding:15,
+      borderRadius:40,
+      flexDirection:'row',
+      alignItems:'center',
+      flexWrap:'wrap',
     },
     text:{
       flex:1,
