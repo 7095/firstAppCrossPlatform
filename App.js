@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useStatem,useEffect, useState} from 'react';
-import { StyleSheet, Text, View,FlatList,TouchableOpacity, TextInput } from 'react-native';
+import React, {useRef,useEffect, useState} from 'react';
+import { StyleSheet, Text, View,FlatList,TouchableOpacity, TextInput,Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constant from 'expo-constants';
 import { Item } from './components/item';
@@ -72,11 +72,13 @@ export default function App() {
   }
   
   const Renderer = ({item}) => (<Item text={item.name} delete ={onDelete} id={item.id} />)
+//<Image style={styles.splash} source={require('../assets/splashScreen.png')} />
 
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Tasks To Do Today</Text>
       <View style={styles.header}>
+      
       <TextInput 
         style={styles.input} 
         onChangeText={onTextChange } 
@@ -130,4 +132,8 @@ const styles = StyleSheet.create({
   buttonDisabled:{
     backgroundColor:'lightgrey',   
   },
+  splash: {
+    width: 36,
+    height: 36,
+   }
 });
