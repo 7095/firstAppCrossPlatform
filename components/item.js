@@ -1,14 +1,11 @@
-import {View,Text, StyleSheet, Button} from 'react-native';
 import React from 'react';
-
+import {View,Text, StyleSheet, Button} from 'react-native';
 export const Item =(props) =>{
-    const deleteItem=(id)=>{
-      props.delete(id)
-    }
+
     return(
       <View style={style.myworld}>
         <Text style={style.text}>{props.text}</Text>
-        <Button title="Delete" onPress={() => deleteItem (props.id) }/>
+        <Button title="Delete" onPress={ () => props.delete(props.id ) }/>
       </View>
     )
   }

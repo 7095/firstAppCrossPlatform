@@ -5,8 +5,6 @@ import Constant from 'expo-constants';
 import { Item } from './components/item';
 
 export default function App() {
-
-
   // const AppData =[
   //   { id: 1, name: "Apple"},
   //   { id: 2, name: "Banana"},
@@ -21,29 +19,29 @@ export default function App() {
   const onTextChange = (value)=>{
     setInput(value)
     if(value.length >=3 ) {
-       setValidInput(true)
-       
+       setValidInput(true)   
     }else {
       setValidInput(false)
     }
   }
 
-  const onSubmit =() =>{
+  const onSubmit =(event ) =>{
     const id =new Date().getTime().toString()
     const item = {id: id, name: input }
     setData ([...data, item ] )
     setInput(null)
   }
 
-  const onDelete =()=>{
-    let items = {...data}
-    let newData=items.filter((item)=>{
+  const onDelete = ( id ) => {
+    let items = [...data]
+    let newData = items.filter ( ( item ) => {
       if( item.id !== id ) {
         return item
       }
     })
     setData( newData )
   }
+  
   const Renderer = ({item}) => (<Item text={item.name} delete ={onDelete} id={item.id} />)
 
   return (
