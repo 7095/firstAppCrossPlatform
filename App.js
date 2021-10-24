@@ -35,7 +35,16 @@ export default function App() {
     setInput(null)
   }
 
-  const Renderer = ({item}) => (<Item text={item.name}/>)
+  const onDelete =()=>{
+    let items = {...data}
+    let newData=items.filter((item)=>{
+      if( item.id !== id ) {
+        return item
+      }
+    })
+    setData( newData )
+  }
+  const Renderer = ({item}) => (<Item text={item.name} delete ={onDelete} id={item.id} />)
 
   return (
     <View style={styles.container}>
